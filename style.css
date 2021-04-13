@@ -5,17 +5,37 @@
 }
 
 /* border-box: conserva o tamanho da caixa */
+/* Zerar margin e padding para facilitar demais estilizações */
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
+/* Fonte Font Poppins: https://fonts.google.com/*/
 body {
 	background: #f0f2f5;
 	font-family: "Poppins", sans-serif;
 }
 
+/* Mantém a leitura visível, excluindo a visibilidade do cliente */
+/* sr -> screen-reader  */
+/*  overflow -> */
+/* clip --rect ->   as */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+/* <main> classe */
+/* largura mínima entre 90vp e 800px */
 .container {
 	width: min(90vw, 800px);
 	margin: auto;
@@ -30,6 +50,23 @@ h2 {
 	font-weight: normal;
 }
 
+/* LINKS & BUTTONS ====================== */
+
+a { 
+	color: #49aa26;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #3dd705;
+}
+
+/* a busca se restringe a classe 'button' com a classe 'new' */
+.button.new {
+	display: inline-block;
+	margin-bottom: .8rem;
+}
+
 /* HEADER ====================== */
 
 /* unidade 'rem' -> relativo ao elemento hoot/html  */
@@ -42,13 +79,13 @@ header {
 #logo {
 	color: #fff;
 	font-weight: 100;
-  font-size: 45px;
+	font-size: 45px;
 }
 
 /* BALANCE ======================== */
 
 #balance {
-	margin-top: -10rem;
+	margin-top: -6rem;
 }
 
 #balance h2 {
@@ -57,6 +94,7 @@ header {
 
 /* CARDS ======================== */
 
+/* borda arrendondada -> border-radius */
 .card {
 	background: white;
 	padding: 1.5rem 2rem;
@@ -70,6 +108,10 @@ header {
 .card h3 {
 	font-weight: normal;
 	font-size: 1rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 /* line-height -> separação de linha (manter valores afastados)*/
@@ -110,11 +152,11 @@ table thead th {
 }
 
 table tbody tr {
-  opacity: 0.7;
+	opacity: 0.7;
 }
 
 table tbody tr:hover {
-  opacity: 1;
+	opacity: 1;
 }
 
 table tbody td {
@@ -124,25 +166,22 @@ table tbody td {
 }
 
 td.description {
-  color: var(--dark-blue);
-
+	color: var(--dark-blue);
 }
 
 td.income {
-  color: #12a454;
-  
+	color: #12a454;
 }
 
 td.expense {
-  color: #e92929;
-  
+	color: #e92929;
 }
 
 /* FOOTER ======================== */
 
 footer {
 	text-align: center;
-  padding: 4rem 0 2rem;
-  color: var(--dark-blue);
-  opacity: 0.6;
+	padding: 4rem 0 2rem;
+	color: var(--dark-blue);
+	opacity: 0.6;
 }
