@@ -1,7 +1,9 @@
 /* GLOBALS ====================== */
 
+/* definir cores como variáveis -> facilita reutilização */
 :root {
 	--dark-blue: #363f5f;
+	--almost-white: #f0f2f5;
 }
 
 /* border-box: conserva o tamanho da caixa */
@@ -12,9 +14,14 @@
 	box-sizing: border-box;
 }
 
+/* 15px */
+html {
+	font-size: 93.75%;
+}
+
 /* Fonte Font Poppins: https://fonts.google.com/*/
 body {
-	background: #f0f2f5;
+	background: var(--almost-white);
 	font-family: "Poppins", sans-serif;
 }
 
@@ -41,30 +48,33 @@ body {
 	margin: auto;
 }
 
-/* TITLES ====================== */
+/*TITLES ======================*/
 
+/* unidade 'rem' -> relativo ao elemento hoot/html  */
 h2 {
 	margin-top: 3.2rem;
 	margin-bottom: 0.8rem;
 	color: var(--dark-blue);
+
 	font-weight: normal;
 }
 
-/* LINKS & BUTTONS ====================== */
+/*LINKS & BUTTONS ====================== */
 
-a { 
+a {
 	color: #49aa26;
 	text-decoration: none;
 }
 
+/*Cor fica mais clara quando posiciona o mouse sobre o texto*/
 a:hover {
 	color: #3dd705;
 }
 
-/* a busca se restringe a classe 'button' com a classe 'new' */
+/* a busca se restringe a classe 'button' + (e) classe 'new'*/
 .button.new {
 	display: inline-block;
-	margin-bottom: .8rem;
+	margin-bottom: 0.8rem;
 }
 
 /* HEADER ====================== */
@@ -79,17 +89,18 @@ header {
 #logo {
 	color: #fff;
 	font-weight: 100;
-	font-size: 45px;
 }
 
 /* BALANCE ======================== */
 
+/* levar seção para o background do header -> valor negativo*/
 #balance {
-	margin-top: -6rem;
+	margin-top: -8rem;
 }
 
 #balance h2 {
 	color: white;
+	margin-top: 0;
 }
 
 /* CARDS ======================== */
@@ -129,6 +140,15 @@ header {
 
 /* TABLE ======================== */
 
+/* overflow-x -> possibilita arrastar a tabela para o lado
+quando o tamanho da tela não for sudiciente. Reparar que os
+cards não têm essa funcionalidade */
+#transaction {
+	display: block;
+	width: 100%;
+	overflow-x: auto;
+}
+
 /* border-spacing -> manipular espaços entre linhas da tabela*/
 #data-table {
 	width: 100%;
@@ -136,10 +156,16 @@ header {
 	color: #969cb3;
 }
 
-/* Buscar primeira linha do <thead> */
+/* Buscar primeira linha do <thead> e <tbody> */
 table thead tr th:first-child,
 table tbody tr td:first-child {
 	border-radius: 0.25rem 0 0 0.25rem;
+}
+
+/* Buscar última linha do <thead> e <tbody> */
+table thead tr th:last-child,
+table tbody tr td:last-child {
+	border-radius: 0 0.25rem 0.25rem 0;
 }
 
 table thead th {
@@ -155,6 +181,8 @@ table tbody tr {
 	opacity: 0.7;
 }
 
+/* Alterar efeito opacidade das linhas da tabela ao passar 
+o mouse sobre cada linha */
 table tbody tr:hover {
 	opacity: 1;
 }
@@ -177,11 +205,98 @@ td.expense {
 	color: #e92929;
 }
 
+/* MODAL ======================== */
+
+/* fundo escuro por fora do modal -> máscara */
+/* top: 0 -> jogar ovarlay no topo, encobrindo toda tela
+ de fundo */
+/* display: flex -> flexibilizar posição do elemento
+ align-itens e justify posiciona o elemento ao centro da tela  */
+.modal-ovarlay {
+	width: 100%;
+	height: 100%;
+
+	background-color: rgba(0, 0, 0, 0.7);
+
+	position: fixed;
+	top: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	opacity: 0;
+	visibility: hidden;
+}
+
+/* exibir modal quando a segunda classe 'active' estiver ativa
+Maipulação através de JS */
+.modal-ovarlay.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Características da caixa modal */
+/* width: 90% -> largura da caixa não bate no fim da tela */
+.modal {
+	background: var(--almost-white);
+	padding: 2.4rem;
+	width: 90%;
+	max-width: 500px;
+
+}
+
+/* FORM ======================== */
+
+#form {
+	max-width: 500px;
+}
+
+/* retirar margem superior */
+#form h2 {
+	margin-top: 0;
+}
+
+/* retirar borda do campo do formulário */
+/* width: 100% -> os campos ocupam todo o espaço do modal */
+/* padding: 0.8rem -> espaçamento entre a borda do modal e os
+campos de preenchimento */
+input {
+	border: none;
+	border-radius: 0.2rem;
+
+	padding: 0.8rem;
+
+	width: 100%;
+}
+
+.input-group {
+	margin-top: 0.8rem;
+}
+
+
+
 /* FOOTER ======================== */
 
 footer {
 	text-align: center;
 	padding: 4rem 0 2rem;
 	color: var(--dark-blue);
+
 	opacity: 0.6;
+}
+
+/* RESPONSIVE ====================== */
+
+@media (min-width: 800px) {
+	html {
+		font-size: 87.5%;
+	}
+
+	/* gap - espaço */
+	#balance {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+	}
 }
