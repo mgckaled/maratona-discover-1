@@ -4,6 +4,9 @@
 :root {
 	--dark-blue: #363f5f;
 	--almost-white: #f0f2f5;
+	--light-green: #49aa26;
+	--green-hover: #3dd705;
+	--red: #e92929;
 }
 
 /* border-box: conserva o tamanho da caixa */
@@ -62,19 +65,58 @@ h2 {
 /*LINKS & BUTTONS ====================== */
 
 a {
-	color: #49aa26;
+	color: var(--light-green);
 	text-decoration: none;
 }
 
 /*Cor fica mais clara quando posiciona o mouse sobre o texto*/
 a:hover {
-	color: #3dd705;
+	color: var(--green-hover);
+}
+
+
+button {
+	width: 100%;
+	height: 50px;
+
+	border: none;
+
+	color:white;
+	background: var(--light-green);
+
+	padding: 0;
+	border-radius: 0.2rem;
+
+	cursor: pointer; /* mãozinha ao passar o cursor */
+}
+
+button:hover {
+	color: var(--green-hover);
 }
 
 /* a busca se restringe a classe 'button' + (e) classe 'new'*/
 .button.new {
 	display: inline-block;
 	margin-bottom: 0.8rem;
+} 
+
+/* Botão de cancelar (caixa modal) */
+.button.cancel {
+	color: var(--red);
+	border: 2px var(--red) solid;
+	border-radius: 00.25rem;
+	
+	height: 50px;
+
+	/* alinhar elementos ao meio */
+	display:flex ;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.6;
+}
+
+.button.cancel:hover {
+	opacity: 1;
 }
 
 /* HEADER ====================== */
@@ -127,14 +169,14 @@ header {
 
 /* line-height -> separação de linha (manter valores afastados)*/
 .card p {
-	font-size: 2rem;
+	font-size: 1.8rem;
 	line-height: 3rem;
 
 	margin-top: 1rem;
 }
 
 .card.total {
-	background: #49aa26;
+	background: var(--light-green);
 	color: white;
 }
 
@@ -202,7 +244,7 @@ td.income {
 }
 
 td.expense {
-	color: #e92929;
+	color: var(--red);
 }
 
 /* MODAL ======================== */
@@ -212,7 +254,7 @@ td.expense {
  de fundo */
 /* display: flex -> flexibilizar posição do elemento
  align-itens e justify posiciona o elemento ao centro da tela  */
-.modal-ovarlay {
+.modal-overlay {
 	width: 100%;
 	height: 100%;
 
@@ -227,13 +269,15 @@ td.expense {
 
 	opacity: 0;
 	visibility: hidden;
+
+	z-index: 999;
 }
 
 /* exibir modal quando a segunda classe 'active' estiver ativa
 Maipulação através de JS */
-.modal-ovarlay.active {
+.modal-overlay.active {
 	opacity: 1;
-	visibility: visible;
+	visibility: visible;;
 }
 
 /* Características da caixa modal */
@@ -241,9 +285,9 @@ Maipulação através de JS */
 .modal {
 	background: var(--almost-white);
 	padding: 2.4rem;
-	width: 90%;
-	max-width: 500px;
 
+	position: relative;
+	z-index: 1;
 }
 
 /* FORM ======================== */
@@ -261,6 +305,7 @@ Maipulação através de JS */
 /* width: 100% -> os campos ocupam todo o espaço do modal */
 /* padding: 0.8rem -> espaçamento entre a borda do modal e os
 campos de preenchimento */
+
 input {
 	border: none;
 	border-radius: 0.2rem;
@@ -274,7 +319,21 @@ input {
 	margin-top: 0.8rem;
 }
 
+.input-group small {
+	opacity: 0.4;
+}
 
+/* display dos botões do modal */
+.input-group.actions {
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center; 
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+	width: 48%;
+}
 
 /* FOOTER ======================== */
 

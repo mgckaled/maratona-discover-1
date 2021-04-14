@@ -57,7 +57,8 @@
 				<h2 class="sr-only">Transações</h2>
 
 				<!-- o '#' garante que o link não saia da página' -->
-				<a href="#" class="button new"> + Nova Transação</a>
+				<!-- onclick -> ativar o click (botão) -->
+				<a href="#" onclick="Modal.open()" class="button new"> + Nova Transação</a>
 
 				<!-- INÍCIO TABELA -->
 				<table id="data-table">
@@ -101,7 +102,7 @@
 		</main>
 
 		<!-- INÍCIO MODAL (CAIXA) -->
-		<div class="modal-ovarlay active">
+		<div class="modal-overlay">
 			<div class="modal">
 				<div id="form">
 					<h2>Nova Transação</h2>
@@ -115,6 +116,7 @@
 								placeholder="Descrição"
 							/>
 						</div>
+
 						<div class="input-group">
 							<label class="sr-only" for="amount">Valor</label>
 							<input
@@ -131,14 +133,10 @@
 						</div>
 						<div class="input-group">
 							<label class="sr-only" for="date">Data</label>
-							<input
-								type="date"
-								id="date"
-								name="date"
-							/>
+							<input type="date" id="date" name="date" />
 						</div>
 						<div class="input-group actions">
-							<a href="#" class="button cancel">Cancelar</a>
+							<a href="#" onclick="Modal.close()" class="button cancel">Cancelar</a>
 							<!-- O primeiro botão será sempre de envio/submissão -->
 							<button>Salvar</button>
 						</div>
@@ -149,5 +147,22 @@
 		<!-- FIM MODAL (CAIXA) -->
 
 		<footer><p>dev.finance$</p></footer>
+
+		<!-- JAVASCRIPT -->
+		<script>
+			const Modal = {
+				open(){
+					// Abrir Modal
+					// Adicionar a class active ao modal
+					document.querySelector('.modal-overlay').classList.add('active');
+					
+				},
+				close(){
+					// Fechar o modal
+					// Remover a class active do modal
+					document.querySelector('.modal-overlay').classList.remove('active')
+				}
+			}
+		</script>
 	</body>
 </html>
